@@ -40,8 +40,16 @@
                 {
                     "name": "Aim",
                     "type": "PassThrough",
-                    "id": "561e10c7-d836-4ad5-8dab-ac2e39f81b60",
+                    "id": "e18b5cc8-dfd1-4827-9c42-1699698e8e5e",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "6302ae75-29b0-4978-946d-bbbaeedb249b",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -162,7 +170,7 @@
                     "id": "ed66cbff-2900-4a62-8896-696503cfcd31",
                     "path": "<Pointer>/delta",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=15,y=15)",
+                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=17,y=17)",
                     "groups": "KeyboardMouse",
                     "action": "Look",
                     "isComposite": false,
@@ -225,7 +233,7 @@
                 },
                 {
                     "name": "",
-                    "id": "96cbdd87-1ba3-4b39-a67f-c4b7eb672230",
+                    "id": "d8d7b0bb-b4f2-4efb-b0d5-60923bca6e30",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -236,12 +244,34 @@
                 },
                 {
                     "name": "",
-                    "id": "367e544b-cad7-4255-8a91-7101f654170a",
+                    "id": "3c6d1296-578c-4619-af41-9ed8c5810409",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "829f6ed0-f249-4989-8cf4-7bc705ef01b4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bd2ab178-d307-4492-973e-23a5d04bd72d",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

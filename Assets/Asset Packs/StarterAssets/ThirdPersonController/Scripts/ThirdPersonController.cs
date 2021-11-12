@@ -24,6 +24,7 @@ namespace StarterAssets
 		public float RotationSmoothTime = 0.12f;
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
+        public float Sensitivity = 1f;
 
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
@@ -86,6 +87,7 @@ namespace StarterAssets
 		private CharacterController _controller;
 		private StarterAssetsInputs _input;
 		private GameObject _mainCamera;
+        private bool _rotateOnMove = true;
 
 		private const float _threshold = 0.01f;
 
@@ -154,9 +156,9 @@ namespace StarterAssets
 			// if there is an input and camera position is not fixed
 			if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
 			{
-				_cinemachineTargetYaw += _input.look.x * Time.deltaTime;
-				_cinemachineTargetPitch += _input.look.y * Time.deltaTime;
-			}
+				_cinemachineTargetYaw += _input.look.x * Time.deltaTime * Sensitivity;
+                _cinemachineTargetPitch += _input.look.y * Time.deltaTime * Sensitivity;
+            }
 
 			// clamp our rotations so our values are limited 360 degrees
 			_cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
@@ -209,8 +211,11 @@ namespace StarterAssets
 				_targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + _mainCamera.transform.eulerAngles.y;
 				float rotation = Mathf.SmoothDampAngle(transform.eulerAngles.y, _targetRotation, ref _rotationVelocity, RotationSmoothTime);
 
-				// rotate to face input direction relative to camera position
-				transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                // rotate to face input direction relative to camera position
+                if (_rotateOnMove) 
+                {
+                    transform.rotation = Quaternion.Euler(0.0f, rotation, 0.0f);
+                }
 			}
 
 
@@ -314,5 +319,15 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+        public void SetSensitivity(float newSensitivity) 
+        {
+            Sensitivity = newSensitivity;
+        }
+
+        public void SetRotateOnMove(bool newRotateOnMove) 
+        {
+            _rotateOnMove = newRotateOnMove;
+        }
 	}
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
@@ -14,8 +13,9 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool aim;
+        public bool shoot;
 
-		[Header("Movement Settings")]
+        [Header("Movement Settings")]
 		public bool analogMovement;
 
 #if !UNITY_IOS || !UNITY_ANDROID
@@ -46,13 +46,17 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
-		}
-		public void OnAim(InputValue value)
-		{
-			AimInput(value.isPressed);
-		}
+        }
 
-        
+        public void OnAim(InputValue value) 
+        {
+            AimInput(value.isPressed);
+        }
+
+        public void OnShoot(InputValue value) 
+        {
+            ShootInput(value.isPressed);
+        }
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -76,14 +80,20 @@ namespace StarterAssets
 		public void SprintInput(bool newSprintState)
 		{
 			sprint = newSprintState;
-		}
-		private void AimInput(bool newAimState)
-		{
-			aim = newAimState;
-		}
+        }
+
+        public void AimInput(bool newAimState)
+        {
+            aim = newAimState;
+        }
+
+        public void ShootInput(bool newShootState) {
+            shoot = newShootState;
+        }
+
 #if !UNITY_IOS || !UNITY_ANDROID
 
-		private void OnApplicationFocus(bool hasFocus)
+        private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
