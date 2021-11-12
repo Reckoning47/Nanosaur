@@ -43,7 +43,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
         //(Screen.width /2f, Screen.width /2f);
 
-        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.width / 2f));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2f, Screen.height / 2f));
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask))
         {
             debugTransform.position = raycastHit.point;
